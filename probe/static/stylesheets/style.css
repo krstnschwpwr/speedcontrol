@@ -1,0 +1,550 @@
+body {
+    color: #ffffff;
+    background-color: #12002c;
+    font-family: "Roboto";
+}
+
+svg:not(:root) {
+    display: block;
+    margin: 0 auto;
+}
+
+p, a {
+
+    font-size: 13px;
+}
+
+.ui .menu {
+    background: none !important;
+    top: 5% !important;
+    border: none !important;
+}
+
+a.item {
+    text-transform: uppercase !important;
+    color: #ffffff;
+}
+
+.prompt {
+    background-color: #12002c !important;
+}
+
+i.icon {
+    color: #ffffff;
+}
+
+.circles {
+    margin-bottom: -10px;
+    margin: 0 auto;
+    margin-top: 20%;
+}
+
+.circle {
+    width: 72px;
+    margin: 12px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    line-height: 1.2;
+    margin-right: 80px;
+}
+
+.circle canvas {
+    vertical-align: top;
+    width: 150px !important;
+    height: 150px !important;
+}
+
+.circle strong {
+    position: absolute;
+    top: 45px;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 40px;
+    font-weight: 400 !important;
+}
+
+.pblue {
+    background-color: #12002c;
+}
+
+a img.str {
+    width: 10% !important;
+    height: auto;
+}
+
+.ui.icon.input > i.icon {
+    opacity: 100 !important;
+}
+
+.box p, .field:last-child input[type='submit'] {
+    position: relative;
+    padding: 0 20px;
+    border-radius: 20px;
+    color: #fff;
+    line-height: 32px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
+.box p{
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+}
+.box a p {
+    cursor: pointer !important;
+}
+
+.leg {
+    padding-top: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 50%;
+    width: 100%;
+}
+
+.container .box {
+    margin: 0 auto !important;
+}
+
+.circles .box {
+    margin: 0 !important;
+    margin-top: 5% !important;
+}
+
+strong {
+    font-weight: 300 !important;
+}
+
+.ctb {
+    position: absolute;
+    margin-top: 1%;
+}
+
+rect {
+    fill: rgb(18, 0, 44) !important;
+}
+
+text, table th {
+    fill: rgb(103, 104, 103);
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+    font-weight: lighter !important;
+}
+
+path {
+    stroke-width: 1;
+}
+
+a {
+    color: #fff !important;
+}
+
+body.data {
+    background-color: #ec6ea6 !important;
+}
+
+#chart_div div table {
+    display: none !important;
+}
+
+text[text-anchor^="end"] {
+    display: none !important;
+}
+
+path[d="M1015,122.5L1045,122.5"],
+path[d="M1015,146.5L1045,146.5"],
+path[d="M1015,170.5L1045,170.5"] {
+    display: none !important;
+}
+
+text[x="1051"] {
+    fill: rgb(255, 255, 255) !important;
+    float: right !important;
+}
+
+rect[x="191"] {
+    fill: rgb(237, 237, 237) !important;
+
+}
+
+path[stroke="none"] {
+    display: none !important;
+
+}
+
+.ui .container {
+    margin: 0 !important;
+    width: 100%;
+}
+
+table thead tr:first-child {
+    border-collapse: collapse !important;
+    border-top: 1px solid white !important;
+    border-bottom: 1px solid white !important;
+    border-left: 1px solid white !important;
+    border-right: 1px solid white !important;
+}
+
+.ui[class*="very basic"].table:not(.sortable):not(.striped) thead tr:first-child th {
+    padding-top: 13px !important;
+}
+
+input[class="prompt"] {
+    color: #c6c6c5 !important;
+    background: transparent !important;
+}
+
+.ping canvas {
+    stroke-style: rgb(107, 208, 239) !important;
+}
+
+.menu #gr {
+    display: none;
+}
+
+.none {
+    display: none !important;
+}
+
+.circle .cen {
+    position: absolute;
+    top: 82px;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 25px;
+    font-weight: lighter !important;
+}
+
+
+
+tr th img {
+    width: auto;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+tr th span {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding-top: 5px;
+}
+
+.ui.search .results {
+    left: -57px !important;
+}
+
+g text[text-anchor="middle"] {
+    display: none !important;
+}
+
+.input-k .box {
+    margin-left: 0 !important;
+    width: 80%;
+    margin: 0 auto !important;
+    border: none !important;
+}
+
+.input-k h3 {
+    text-transform: uppercase !important;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-top: -20%;
+    color: #ffffff;
+    font-size:3.4rem !important;
+    font-family: 'Roboto';
+    border-bottom: 7px solid #E50060 !important;
+    height: 65px;
+}
+.input-k h3 span{
+    font-weight: 200 !important;
+}
+
+.input-k .borderless {
+    border: none !important;
+    margin-top: 22% !important;
+}
+
+
+
+.box {
+    position: relative;
+    /* display: inline-block; */
+    /* height: 32px; */
+    padding: 0 20px;
+    color: #fff;
+    line-height: 32px;
+    cursor: default;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.field.wide{
+    margin-bottom: 10% !important;
+}
+label {
+    color: #ffffff !important;
+    font-family: 'Roboto';
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400 !important;
+    width: auto;
+    text-align: left;
+    font-size: 1.5em !important;
+    margin-left: 10px !important;
+    line-height: 20px;
+}
+
+input {
+    font-family: 'Roboto' !important;
+    color: #ffffff !important;
+    font-size: 1.2em !important;
+    letter-spacing: 1px;
+    padding: 0.5em !important;
+    font-weight: 100 !important;
+    border: none !important;
+    background-color: #12002c !important;
+
+
+}
+
+.field:last-child input[type='submit'] {
+    font-family: 'Roboto';
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.3em !important;
+    display: inline-block;
+    background: none !important;
+    color: #ffffff !important;
+
+}
+
+.ui.form input[type=text]:focus {
+    border: none !important;
+    color: #ffffff !important;
+    float: left !important;
+}
+
+.ui.form input[type=text] {
+    background: none !important;
+    color: #ffffff !important;
+}
+
+.field .box {
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+.two.fields input::-webkit-input-placeholder
+{
+    text-align: left !important;
+}
+
+input::-webkit-input-placeholder {
+    color: rgba(227, 227, 227, 0.5) !important;
+
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    color: rgba(227, 227, 227, 0.5) !important;
+
+}
+
+input::-moz-placeholder { /* Firefox 19+ */
+    color: rgba(227, 227, 227, 0.5) !important;
+
+}
+
+input:-ms-input-placeholder {
+    color: rgba(227, 227, 227, 0.5) !important;
+
+}
+
+.clear {
+    clear: both;
+}
+
+.eight.wide.field {
+    margin-top: 0 !important;
+}
+
+.prtg.field {
+    margin-top: 5% !important;
+}
+
+.two.fields#prtg_fields{
+    display: inline-block !important;
+}
+
+
+.two.fields .field {
+    margin-top: 0 !important;
+}
+.two.fields{
+    margin-bottom: 0 !important;
+}
+.one.center.field {
+    margin: 0 auto;
+
+}
+
+.two.fields.hidden {
+    display: none;
+}
+
+#prtg_fields {
+    display: none;
+    padding-top: 10%;
+}
+
+.box.center.menu.dash {
+    margin-left: 55% !important;
+}
+.fixed{
+  top:0;
+  position:fixed;
+  width:auto;
+  display:none;
+  border:none;
+}
+th,td{
+  text-align:center;
+  padding:5px 0;
+}
+
+
+table{
+  border-collapse:collapse;
+  width: 90%;
+    table-layout: fixed;
+}
+#data thead{
+    background-color: #12002c;
+}
+
+.chart{
+    margin-top: 10%;
+}
+#header-fixed {
+    position: fixed;
+    top: 0px; display:none;
+    background-color:white;
+}
+table th{
+    width: 20% !important;
+}
+.scroll-to-fixed-fixed tr.bordered{
+    width: 100%;
+    display: inline-table;
+}
+table thead tr:first-child{
+    border: none !important;
+}
+.back-to-top {
+ background: none !important;
+ position: fixed;
+ bottom:20px;
+ right:20px;
+ padding:1em;
+       border: 1px solid #fff;
+    border-radius: 20px;
+        color: #fff !important;
+
+}
+
+.ui.text.loader{
+    color: #ffffff !important;
+}
+.ui.active.dimmer{
+    background: #12002c !important;
+    margin-top: 30% !important;
+
+}
+.box.borderless.center.ui form,
+.box.borderless.center.ui .title-wrapper{
+    display: none;
+}
+.logo{
+    width: 80%;
+    height: auto;
+    margin-top: -10%;
+}
+form{
+     width: 60%;
+    margin-top: 10%;
+    display: inline-block;
+}
+.border{
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 30px !important;
+    padding-bottom: 0% !important;
+}
+
+
+
+.field.up, .field.down, .field.url, .field.token {
+
+    margin-bottom: 5% !important;
+}
+.field.url input, .field.token input{
+    color: #ffffff !important;
+}
+
+tr th span{
+    color: #ffffff;
+}
+.prtg-set label{
+    color: #ffffff !important;
+}
+
+
+
+.prtg.ui.toggle.checkbox input:checked~.box, .prtg.ui.toggle.checkbox input:checked~label{
+    color: white !important;
+}
+.ui.toggle.checkbox input:checked~.box, .ui.toggle.checkbox input:checked~label {
+    color: rgba(255,255,255,.95)!important;
+}
+.prtg-set span{
+    position: absolute;
+    margin-top: -25%;
+    margin-left: 100%;
+    width: 150%;
+    letter-spacing: 2px;
+    font-size: 20px !important;
+    font-weight: 100 !important;
+    font-family: Roboto !important;
+}
+h5{
+    font-weight: 200;
+    font-size: 1.2em;
+    font-family: Roboto !important;
+
+}
+.ui.centered.toggle.floated.checkbox.prtg-set {
+    width: 50%;
+    float: left;
+    margin-bottom: 10%;
+}
+.prtg h5 {
+    position: absolute;
+        margin-top: -9%;
+    margin-left: 32%;
+}
+.field.up,
+.field.url,
+.field.prtg.clearing{
+    margin-left: 10% !important;
+}
+.one.center.field{
+        border-top: 4px solid #E50060 !important;
+    width: 76%;
+}
+.sorted.ascending{
+    background: none !important;
+}

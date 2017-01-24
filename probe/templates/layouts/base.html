@@ -1,0 +1,16 @@
+<html>
+<head>
+  {% include 'shared/head.html' %}
+</head>
+<body>
+<div class="ui grid container">
+  <div class="row">
+    {% block content %}
+    {% endblock %}
+  </div>
+</div>
+{% include 'shared/scripts.html' %}
+{% block additional_scripts %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <div class="ui fixed borderless menu">
+        <div class="ui container">
+            <div class="ctb">
+                <a href="/" class="header item">
+                    <img class="str" src="/static/images/circle.png">
+                </a>
+                <a href="/overview" class="header item">
+                    <img class="str" src="/static/images/stat.png">
+                </a>
+                <a href="/settings" class="header item">
+                    <img class="str" src="/static/images/settings.png">
+                </a>
+            </div>
+            {% load speed_format from app_filters %}
+            <div class="box center menu">
+                <a href="/api/v1/qualityofservice/"><p id="q">QoS<span> </span></p></a>
+            </div>
+        </div>
+    </div>
+    <div class="circles">
+        <div class="ping circle">
+            <strong>NaN</strong>
+            <span class="cen"></span>
+            <p class="leg">PING TIME</p>
+        </div>
+        <div class="upload circle">
+            <strong>NaN</strong>
+            <span class="cen"></span>
+            <p class="leg">Upload</p>
+        </div>
+        <div class="download circle">
+            <strong>NaN</strong>
+            <span class="cen"></span>
+            <p class="leg">Download</p>
+        </div>
+        <div class="box">
+            <p id="server">NaN</p>
+        </div>
+
+    </div>
+{% endblock %}
+{% block additional_scripts %}
+    <script type="text/javascript" src="/static/vendor-js/circle-progress.js"></script>
+    <script>
+        var max_up = {{ exp.expected_upload }};
+        var max_down = {{ exp.expected_download }};
+    </script>
+    <script type="text/javascript" src="/static/javascript/home.js"></script>
+{% endblock %}
+

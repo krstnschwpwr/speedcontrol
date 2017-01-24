@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <div class="ui fixed borderless menu">
+        <div class="ui container">
+            <div class="ctb">
+                <a href="/" class="header item">
+                    <img class="str" src="/static/images/circle.png">
+                </a>
+                <a href="/overview" class="header item">
+                    <img class="str" src="/static/images/stat.png">
+                </a>
+                <a href="/settings" class="header item">
+                    <img class="str" src="/static/images/settings.png">
+                </a>
+            </div>
+            <div class="box center dash menu">
+                <p id="q"><a href="#data" onclick="toggleTable();">Show All Data </a></p>
+            </div>
+        </div>
+        <div class="right menu">
+            <div class="item">
+                <div class="ui search">
+                    <div class="ui icon input">
+                        <input class="prompt" type="text" placeholder="">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chart">
+        <div id="chart_div">
+            <div class="ui active dimmer">
+                <div class="ui indeterminate text loader">Loading Data</div>
+            </div>
+        </div>
+    </div>
+    <table id="data" style="display: none" class="ui sortable very basic inverted striped pblue center aligned table">
+        <thead class="header" style="z-index: auto; position: static; top: auto;">
+        <tr class="bordered">
+            <th class="sorted ascending"><img src="/static/images/time.png"><br><span>Time</span></th>
+            <th class="sorted ascending"><img src="/static/images/server.png"><br><span>Server</span></th>
+            <th class="sorted ascending"><img src="/static/images/ping.png"><br><span>Ping</span></th>
+            <th class="sorted ascending"><img src="/static/images/download.png"><br><span>Download</span></th>
+            <th class="sorted ascending"><img src="/static/images/upload.png"><br><span>Upload</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+{% endblock %}
+{% block additional_scripts %}
+    <script type="text/javascript" src="/static/vendor-js/jquery-scrolltofixed.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="http://semantic-ui.com/javascript/library/tablesort.js"></script>
+   <script type="text/javascript" src="/static/javascript/overview.js"></script>
+{% endblock %}

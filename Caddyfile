@@ -1,0 +1,9 @@
+:8080
+#site to serve
+log access.log
+#view pi ui
+#proxy / 10.49.12.247:80
+#view localhost ui
+proxy / 127.0.0.1:8000
+
+

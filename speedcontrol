@@ -1,0 +1,253 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          speedcontrol
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Example initscript
+### END INIT INFO
+### =============================
+#         GLOBALS
+### =============================
+APP_NAME='speedcontrol'
+APP_LISTEN='0.0.0.0'
+APP_PORT=8000
+APP_HOME="/usr/local/${APP_NAME}"
+APP_USER=pi
+VENV_PATH="/usr/local/venvs/${APP_NAME}"
+PID_PATH="/var/run"
+WEB_PID_FILE="${PID_PATH}/${APP_NAME}-web.pid"
+BG_PID_FILE="${PID_PATH}/${APP_NAME}-background.pid"
+CADDY_PID_FILE="${PID_PATH}/${APP_NAME}-caddy.pid"
+BASE_LOG_PATH="/var/log/${APP_NAME}"
+SERVER_LOGFILE="${BASE_LOG_PATH}/web.log"
+BACKGROUND_LOGFILE="${BASE_LOG_PATH}/background.log"
+
+## ========= DO NOT EDIT BEYOND THIS LINE ========= ##
+
+### =============================
+#         Main functions
+### =============================
+
+usage() {
+	printf "Usage: ${0} [start|stop|status|restart]\n"
+}
+
+activate_venv() {
+	source $VENV_PATH/bin/activate
+}
+
+pre_flight_check() {
+	if [[ ! ( -d "${APP_HOME}" ) ]]; then
+		printf "[ERROR] App does not seem to be installed. Check APP_HOME=${APP_HOME}!"
+		exit 1
+	fi
+
+	cd $APP_HOME
+	if [[ ! ( -d "${VENV_PATH}" ) ]]; then
+		printf "\n[WARNING] No venv available. Creating one... "
+		virtualenv ${VENV_PATH} -p "$(which python3)" > /dev/null
+		if [[ ! ( $? -eq 0 ) ]]; then
+			exit $?
+		fi
+		printf "[DONE]\n"
+		activate_venv
+		printf "[INFO] Installing requirements..."
+		$(which pip) install -r requirements.txt &> /dev/null
+		if [[ ! ( $? -eq 0 ) ]]; then
+			printf "\n[ERROR]: installation of requirements failed!\n"
+			exit $?
+		fi
+		printf "[DONE]\n"
+	fi
+
+	if [[ ! ( -d "${BASE_LOG_PATH}" ) ]]; then
+		mkdir -p ${BASE_LOG_PATH}
+	fi
+
+	if [[ -e "${WEB_PID_FILE}" ]] || [[ -e "${BG_PID_FILE}" ]] || [[ -e "${CADDY_PID_FILE}" ]]; then
+		printf "[INFO] The service seems to be already started! Check with 'status' subcommand!\n"
+		exit 0
+	fi
+}
+
+pid_exists() {
+	ps -p ${1} > /dev/null
+	return $?
+}
+
+stop_process() {
+    pid=$1
+    tree=$2
+
+    pid_exists $pid
+
+	if [[ ! ( $? -eq 0 ) ]]; then
+		printf "\r\n[ERROR] No process for ${pid} found."
+		return 1
+	fi
+
+	if [[ -z "${tree}" ]]; then
+		kill -15 ${pid}
+	else
+		pkill -15 -P ${pid}
+	fi
+
+	sleep 10s
+
+	pid_exists $pid
+
+	if [[ $? -eq 0 ]]; then
+		if [[ -z "${tree}" ]]; then
+			kill -9 ${pid}
+		else
+			pkill -9 -P ${pid}
+		fi
+
+		sleep 5s
+
+		pid_exists $pid
+
+		if [[ $? -eq 0 ]]; then
+			printf "\r\nCould not kill service with pid ${pid}. Exiting...\n"
+			exit 1
+		fi
+	fi
+	return 0
+}
+
+start() {
+	pre_flight_check
+	activate_venv
+	cd $APP_HOME || (printf "[ERROR] Could not enter ${APP_HOME}!\n"; exit 1)
+	printf "[INFO] Applying eventual migrations..."
+	./manage.py migrate 1> /dev/null
+	if [[ $? -ne 0 ]]; then
+		exit $?
+	fi
+
+	printf "[DONE]\n"
+
+	./manage.py scheduler &> $BACKGROUND_LOGFILE &
+	echo $! > $BG_PID_FILE 
+	./manage.py runserver ${APP_LISTEN}:${APP_PORT} &> $SERVER_LOGFILE &
+	echo $! > $WEB_PID_FILE
+	caddy &> /dev/null &
+	echo $! > $CADDY_PID_FILE
+}
+
+stop() {
+	if [[ ! ( -e "${BG_PID_FILE}" ) ]] && [[ ! ( -e "${WEB_PID_FILE}" ) ]] && [[ ! ( -e "${CADDY_PID_FILE}" ]]; then
+		printf "Service not running. Exiting\n"
+		exit 0
+	fi
+
+	if [[ -e "${BG_PID_FILE}" ]]; then
+	    bg_pid=$(<${BG_PID_FILE})
+	    printf "Trying to stop background-service..."
+	    stop_process "$bg_pid"
+
+	    if [[ $? -ne 0 ]]; then
+	    	printf "\nCleaning up..."
+	    fi
+	    rm "${BG_PID_FILE}"
+	    printf "[DONE]\n"
+	fi
+
+	if [[ -e "${WEB_PID_FILE}" ]]; then
+	    web_pid=$(<${WEB_PID_FILE})
+	    printf "Trying to stop web-service..."
+	    stop_process "$web_pid" 1
+	    if [[ $? -ne 0 ]]; then
+	    	printf "\nCleaning up..."
+	    fi
+	    rm "${WEB_PID_FILE}"
+	    printf "[DONE]\n"
+	fi
+	if [[ -e "${CADDY_PID_FILE}" ]]; then
+	    caddy_pid=$(<${CADDY_PID_FILE})
+	    printf "Trying to stop caddy..."
+	    stop_process "$caddy_pid" 1
+	    if [[ $? -ne 0 ]]; then
+	    	printf "\nCleaning up..."
+	    fi
+	    rm "${CADDY_PID_FILE}"
+	    printf "[DONE]\n"
+	fi
+	printf "\n"
+	exit 0
+}
+
+status() {
+
+	if [[ -e "${WEB_PID_FILE}" ]]; then
+	    web_pid=$(<${WEB_PID_FILE})
+        pid_exists $web_pid
+	    if [[ $? -ne 0 ]]; then
+			not=" not"
+			rm ${WEB_PID_FILE}
+		fi
+    else
+        not=" not"
+	fi
+
+	printf "* web-service is${not} running\n"
+
+	if [[ -e "${BG_PID_FILE}" ]]; then
+	    bg_pid=$(<${BG_PID_FILE})
+        pid_exists $bg_pid
+	    if [[ $? -ne 0 ]]; then
+			not=" not"
+			rm ${BG_PID_FILE}
+		fi
+    else
+        not=" not"
+	fi
+
+	printf "* background-service is${not} running\n"
+
+
+	if [[ -e "${CADDY_PID_FILE}" ]]; then
+	    caddy_pid=$(<${CADDY_PID_FILE})
+        pid_exists $caddy_pid
+	    if [[ $? -ne 0 ]]; then
+			not=" not"
+			rm ${CADDY_PID_FILE}
+		fi
+    else
+        not=" not"
+	fi
+	printf "* caddy is${not} running\n"
+	printf "\n"
+	exit 0
+}
+
+### =============================
+#         ARGS case
+### =============================
+
+case "$1" in
+	start)
+		printf "Starting...\n"
+		start
+		printf "[STARTED]\n"
+		;;
+	stop)
+		printf "Stopping ...\n"
+		stop
+		printf "[STOPPED]\n"
+		;;
+	restart)
+		$0 stop
+		$0 start
+		;;
+	status)
+		status
+		;;
+	*)
+		usage
+		exit 1
+		;;
+esac
+
