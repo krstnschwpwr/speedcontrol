@@ -39,7 +39,7 @@ $ pip install -r /usr/local/speedcontrol/requirements.txt
 3. Setup system service & configure system
 
 ```
-$ cp /usr/local/speedtracker/speedcontrol /etc/init.d/speedcontrol
+$ cp /usr/local/speedcontrol/speedcontrol /etc/init.d/speedcontrol
 $ chmod +x /etc/init.d/speedcontrol
 $ systemctl daemon-reload
 $ ufw enable && ufw allow ssh && ufw allow http
