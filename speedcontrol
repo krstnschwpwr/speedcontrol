@@ -138,7 +138,7 @@ start() {
 }
 
 stop() {
-	if [[ ! ( -e "${BG_PID_FILE}" ) ]] && [[ ! ( -e "${WEB_PID_FILE}" ) ]] && [[ ! ( -e "${CADDY_PID_FILE}" ) ]]; then
+	if [[ ! ( -e "${BG_PID_FILE}" ) ]] && [[ ! ( -e "${WEB_PID_FILE}" ) ]] && [[ ! ( -e "${CADDY_PID_FILE}") ]]; then
 		printf "Service not running. Exiting\n"
 		exit 0
 	fi

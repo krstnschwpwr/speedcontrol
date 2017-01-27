@@ -1,0 +1,63 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+    <div class="row start">
+        <div class="menu-circ links">
+            <ul>
+                <li>
+
+                    <a class="hvr-underline-from-center" href="/settings"><h3>setting up</h3></a>
+                </li>
+                <p>In order to use this app
+                    you have to set it up first. <br>
+                    - Please look up your DSL speed from your High Speed Internet Plan. You will need it in the next
+                    step. Let's get started! </p>
+            </ul>
+        </div>
+        <img class="logo" src="/static/images/ctrl.png">
+    </div>
+{% endblock %}
+{% block additional_scripts %}
+    <script type="text/javascript" src="/static/vendor-js/circle-progress.js"></script>
+    <script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+    <script type="text/javascript" src="/static/vendor-js/mojs-player.js"></script>
+    <script type="text/javascript" src="/static/vendor-js/mojs-player.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".menu-circ").delay(3000).fadeIn(200);
+            $(".logo").delay(2100).fadeIn(200);
+            $('a').click(function () {
+                $('.circ').fadeOut();
+                $('.line').fadeOut();
+                $('.line2').fadeOut();
+            });
+        });
+    </script>
+    <script>
+        const cross = new mojs.Shape({
+            className: 'circ',
+            shape: 'circle',
+            scale: {0: 4, easing: 'cubic.out'},
+            stroke: {'#fc007b': '#6bf9ef', '#b3ff00': '#00fffe'},
+            fill: 'transparent',
+            origin: '100% 50%',
+            angle: {[-180]: 180},
+            left: '20%',
+            radius: 50,
+            duration: 2000,
+            repeat: 0,
+            y: -100,
+            easing: 'cubic.in',
+        })
+                .then({
+                    strokeWidth: 2,
+                    fill: '#fc007b',
+                    top: '60%',
+                    angle: -20,
+                    radius: 130,
+                    stroke: 'transparent',
+                    repeat: 0,
+                    scale: {to: 5, easing: 'sin.in'},
+                }).play();
+    </script>
+{% endblock %}
+

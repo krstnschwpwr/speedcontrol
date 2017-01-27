@@ -1,10 +1,9 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
     <div class="ui container input-k">
-        <div class="box borderless center ui  form">
-            <img src="/static/images/speed_ctrl.png" class="logo">
+        <div class="box borderless center ui form">
             <div class="title-wrapper">
-                <h3>SPEED TO <span>CONTROL</span></h3>
+                <h3>SPEED TO CONTROL</h3>
                 <h5>Please enter the following information in valid format</h5>
             </div>
             <form action="/settings" method="post">
@@ -23,7 +22,7 @@
                     </div>
                     <div class="field prtg clearing">
                         <div class="ui centered toggle floated checkbox prtg-set">
-                            <input type="checkbox" name="prtg" id="prtg">
+                            <input type="checkbox" name="prtg" id="prtg" data-onstyle="default">
                             <label></label><h5>Send Data To PRTG</h5>
                         </div>
                     </div>
@@ -46,7 +45,7 @@
                     </div>
                 </div>
                 <div class="one center field">
-                    <input class="ui submit box" type="submit" id="sub" value="START TRACKING">
+                   <a class="hvr-underline-from-center"> <input class="ui submit box" type="submit" id="sub" value="START TRACKING"></a>
                 </div>
             </form>
         </div>

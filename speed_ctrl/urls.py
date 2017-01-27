@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^search(?P<query>[a-zA-Z0-9\.]+)?$', views.SearchView.as_view()),
     url(r'^settings', views.settings, name="settings"),
     url(r'^overview', views.OverviewView.as_view()),
+    url(r'^start', views.StartView.as_view()),
     url(r'^$', views.StatusView.as_view())
 ]

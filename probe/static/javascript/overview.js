@@ -88,7 +88,7 @@
                 legend: 'right',
                 width: 1200,
                 height: 600,
-                colors: [ '#c0cc18', '#e5005f'] //'#6bd0ef',
+                colors: [ '#b3ff00', '#fc007b'] //'#6bd0ef',
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.LineChart(document.getElementById('chart_div'));

@@ -83,9 +83,13 @@ class SpeedDetail(generics.RetrieveAPIView):
 class OverviewView(TemplateView):
     def get(self, request):
         if is_first_run():
-            return redirect('/settings')
+            return redirect('/start')
 
         return TemplateResponse(request, 'overview.html')
+
+
+class StartView(TemplateView):
+    template_name = 'start.html'
 
 
 class StatusView(TemplateView):
@@ -93,7 +97,7 @@ class StatusView(TemplateView):
 
     def get(self, request):
         if is_first_run():
-            return redirect('/settings')
+            return redirect('/start')
 
         return TemplateResponse(request, 'status.html', context=self.get_context_data())
 

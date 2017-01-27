@@ -9,14 +9,14 @@ $(document).ready(function () {
 function l(d) {
 
 	if (!initialized) {
-		$('.ping.circle').circleProgress({value: d.ping, fill: {gradient: ["#273582", "#6bd0ef"]}});
+		$('.ping.circle').circleProgress({value: d.ping, fill: {gradient: ["#340BE8", "#00fffe"]}});
 		$('.upload.circle').circleProgress({
 			value: (d.upload / max_up),
-			fill: {gradient: ["#e5005f", "#c0cc18"]}
+			fill: {gradient: ["#f84526", "#b3ff00"]}
 		});
 		$('.download.circle').circleProgress({
 			value: (d.download / max_down),
-			fill: {gradient: ["#46005f", "#e5005f"]}
+			fill: {gradient: ["#A30CFF", "#fc007b"]}
 		});
 		initialized = true;
 	} else {
