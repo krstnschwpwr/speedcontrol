@@ -12,7 +12,7 @@ $(document).ready(function () {
         '<li id="down"> DOWNLOAD:<span></span> </li>' +
         '<li id="prtg_url"> PRTG URL:  <span></span> </li>' +
         '<li id="prtg_token"> PRTG TOKEN:<br><span></span> </li>'
-        + '<li class="box"><a href="javascript:history.back()"><p> Take Me Back  ⇋</p></a></li>' +
+        + '<li class="box"><a href="javascript:history.back()"><p> Take Me Back </p></a></li>' +
         '</ul>'+ '</div>');
 
 

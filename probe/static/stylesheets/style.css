@@ -1,26 +1,48 @@
 body {
     color: #ffffff;
     background-color: #12002c !important;
-    font-family: "Roboto";
+    font-family: "BRANDON LIGHT";
 }
-
+@font-face {
+font-family: "BRANDON LIGHT";
+src: url("/static/stylesheets/themes/default/assets/fonts/BRANDON_LIGHT.OTF");
+}
+@font-face {
+font-family: "BRANDON MEDIUM";
+src: url("/static/stylesheets/themes/default/assets/fonts/BRANDON_MED.OTF");
+}
+@font-face {
+font-family: "BRANDON BOLD";
+src: url("/static/stylesheets/themes/default/assets/fonts/BRANDON_BLD.OTF");
+}
+h1, h2,h3, h4, h5{
+    font-family: "BRANDON MEDIUM";
+}
+ul li{
+    font-family: "BRANDON LIGHT";
+}
 body.unscroll {
     margin: 0;
     height: 100%;
     overflow: hidden;
 
 }
-
+ul p{
+    font-family: "Brandon Text";
+}
 svg:not(:root) {
     display: block;
     margin: 0 auto;
 }
 
-p, a {
-
+p, a, p a {
+    font-family: "BRANDON LIGHT" !important;
     font-size: 13px;
+    letter-spacing: 1px;
 }
-
+table{
+    font-family: "BRANDON LIGHT";
+}
 .ui .menu {
     background: none !important;
     top: 5% !important;
@@ -54,6 +76,7 @@ i.icon {
     text-align: center;
     line-height: 1.2;
     margin-right: 80px;
+    font-family: "BRANDON MEDIUM";
 }
 
 .circle canvas {
@@ -156,8 +179,9 @@ rect {
 
 text, table th {
     fill: rgb(103, 104, 103);
-    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+    font-family: "BRANDON LIGHT";
     font-weight: lighter !important;
+    letter-spacing: 2px;
 }
 
 path {
@@ -242,7 +266,7 @@ input[class="prompt"] {
     text-align: center;
     line-height: 40px;
     font-size: 25px;
-    font-weight: lighter !important;
+    font-family: "BRANDON LIGHT" !important;
 }
 
 tr th img {
@@ -288,7 +312,6 @@ g text[text-anchor="middle"] {
     margin-top: -20%;
     color: #ffffff;
     font-size: 3.4rem !important;
-    font-family: 'Roboto';
     border-bottom: 7px solid #ffffff !important;
     height: 65px;
 }
@@ -318,7 +341,7 @@ g text[text-anchor="middle"] {
 
 label {
     color: #ffffff !important;
-    font-family: 'Roboto';
+    font-family: 'BRANDON MEDIUM';
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 400 !important;
@@ -330,7 +353,7 @@ label {
 }
 
 input {
-    font-family: 'Roboto' !important;
+    font-family: 'Brandon LIGHT' !important;
     color: #ffffff !important;
     font-size: 1.2em !important;
     letter-spacing: 1px;
@@ -342,7 +365,7 @@ input {
 }
 
 .field:last-child input[type='submit'] {
-    font-family: 'Roboto';
+    font-family: 'Brandon LIGHT';
     letter-spacing: 2px;
     text-transform: uppercase;
     font-size: 1.3em !important;
@@ -495,6 +518,7 @@ table thead tr:first-child {
 
 .ui.text.loader {
     color: #ffffff !important;
+    font-family: "BRANDON MEDIUM" !important;
 }
 
 .ui.active.dimmer {
@@ -550,13 +574,13 @@ tr th span {
     letter-spacing: 2px;
     font-size: 20px !important;
     font-weight: 100 !important;
-    font-family: Roboto !important;
+    font-family: "BRANDON LIGHT" !important;
 }
 
 h5 {
     font-weight: 200;
     font-size: 1.2em;
-    font-family: Roboto !important;
+    font-family: "BRANDON LIGHT" !important;
 
 }
 
@@ -693,32 +717,37 @@ and (min-width: 1300px) {
 
     letter-spacing: 2px;
     color: #00fffe;
+      border-bottom: 7px solid #ffffff !important;
     font-size: 1.8rem !important;
     text-decoration: none;
     display: inline-block;
     font-weight: 400;
     text-transform: uppercase !important;
     margin-top: 10px;
-    font-size: 2.8rem !important;
-    font-family: 'Roboto';
+    font-size: 2.86rem !important;
 }
 
 .set ul #tit {
     margin-bottom: 5%;
-    border-bottom: 7px solid #ffffff !important;
+
 }
 
 .set ul li {
     padding-bottom: 5px;
     letter-spacing: 2px;
     font-weight: 500;
-    width: 100%;
+    width: 103%;
 }
 
 .set ul li#up span,
 .set ul li#down span,
 .set ul li#prtg_url span {
     float: right !important;
+        font-family: "BRANDON LIGHT" !important;
+
+}
+.set ul li{
+        font-family: "BRANDON MEDIUM";
 }
 
 .prev a.settings {
@@ -735,7 +764,9 @@ and (min-width: 1300px) {
 
 #prtg_token {
     margin-bottom: 10%;
-
+}
+#prtg_token span{
+     font-family: "BRANDON LIGHT" !important;
 }
 
 .field.url #url,
