@@ -6,6 +6,8 @@ urlpatterns = [
     url(r'^api/v1/qualityofservice/(?P<id>[0-9]+)', views.QualityDetail.as_view()),
     url(r'^api/v1/qualityofservice[/]?$', views.QualityList.as_view()),
 
+    url(r'^api/v1/user-record[/]?$', views.RecordView.as_view()),
+
     url(r'^api/v1/measurements/latest', views.SpeedDetail.as_view()),
     url(r'^api/v1/measurements/(?P<id>[0-9]+)', views.SpeedDetail.as_view()),
     url(r'^api/v1/measurements[/]?$', views.SpeedList.as_view()),

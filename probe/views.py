@@ -6,13 +6,13 @@ from rest_framework.response import Response
 
 from .forms import SettingsForm
 from .models import Speed, AverageQuality, Settings
-from .serializers import SpeedSerializer, PrtgSpeedSerializer, SearchSerializer, DictSerializer, QualitySerializer
+from .serializers import SpeedSerializer, PrtgSpeedSerializer, SearchSerializer, DictSerializer, QualitySerializer, SettingsSerializer, ErrorMsg, PrtgErrorMsg
 from .renderers import PrtgRenderer
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
-from probe.lib.helpers import is_first_run
+from probe.lib.helpers import is_first_run, is_not_first_run
 
 
 class QualityList(generics.ListAPIView):
@@ -22,18 +22,20 @@ class QualityList(generics.ListAPIView):
 
 
 class QualityDetail(generics.RetrieveAPIView):
-    renderer_classes = [JSONRenderer]
+        renderer_classes = [JSONRenderer]
 
-    def retrieve(self, request, *args, **kwargs):
-        id = kwargs.get('id', None)
-        if id:
-            queryset = AverageQuality.objects.get(id=id)
-            serializer = QualitySerializer(queryset, many=False)
-        else:
-            queryset = AverageQuality.objects.latest()
-            serializer = QualitySerializer(queryset, many=False)
-
-        return Response(serializer.data)
+        def retrieve(self, request, *args, **kwargs):
+            if is_not_first_run():
+                id = kwargs.get('id', None)
+                if id:
+                    queryset = AverageQuality.objects.get(id=id)
+                    serializer = QualitySerializer(queryset, many=False)
+                else:
+                    queryset = AverageQuality.objects.latest()
+                    serializer = QualitySerializer(queryset, many=False)
+                return Response(serializer.data)
+            serializer = ErrorMsg('', many=False)
+            return Response(serializer.data)
 
 
 class SearchView(generics.ListAPIView):
@@ -57,27 +59,25 @@ class SpeedList(generics.ListAPIView):
 
 class SpeedDetail(generics.RetrieveAPIView):
     renderer_classes = [JSONRenderer, PrtgRenderer]
-
     def retrieve(self, request, *args, **kwargs):
-        id = kwargs.get('id', None)
-        format = request.GET.get('format', None)
-        if id:
-            queryset = Speed.objects.get(id=id)
-            serializer = SpeedSerializer(queryset, many=False)
-        else:
-            try:
-                queryset = Speed.objects.latest()
-                if format == 'prtg':
-                    serializer = PrtgSpeedSerializer(queryset, many=False)
-                else:
-                    serializer = SpeedSerializer(queryset, many=False)
-            except:
-                if format == 'prtg':
-                    serializer = DictSerializer({'prtg': {'error': 1, 'text': 'No data available!'}}, many=False)
-                else:
-                    serializer = DictSerializer({'message': 'No data available!', 'status': 500}, many=False)
-
-        return Response(serializer.data)
+            id = kwargs.get('id', None)
+            format = request.GET.get('format', None)
+            if id:
+                queryset = Speed.objects.get(id=id)
+                serializer = SpeedSerializer(queryset, many=False)
+            else:
+                try:
+                    queryset = Speed.objects.latest()
+                    if format == 'prtg':
+                        serializer = PrtgSpeedSerializer(queryset, many=False)
+                    else:
+                        serializer = SpeedSerializer(queryset, many=False)
+                except:
+                    if format == 'prtg':
+                        serializer = PrtgErrorMsg('', many=False)
+                    else:
+                        serializer = ErrorMsg('', many=False)
+            return Response(serializer.data)
 
 
 class OverviewView(TemplateView):
@@ -88,6 +88,17 @@ class OverviewView(TemplateView):
         return TemplateResponse(request, 'overview.html')
 
 
+class RecordView(generics.ListAPIView):
+    renderer_classes = [JSONRenderer]
+    queryset = [Settings.objects.last()]
+
+
+    if queryset is None:
+        serializer_class = ErrorMsg
+    serializer_class = SettingsSerializer
+
+
+
 class StartView(TemplateView):
     template_name = 'start.html'
 
@@ -95,7 +106,7 @@ class StartView(TemplateView):
 class StatusView(TemplateView):
     model = Speed
 
-    def get(self, request):
+    def dispatch(self, request, *args, **kwargs):
         if is_first_run():
             return redirect('/start')
 
@@ -131,3 +142,4 @@ def settings(request):
     return render(request, 'settings.html', {
         'form': form,
     })
+

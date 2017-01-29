@@ -41,10 +41,12 @@
 
         function formatDate(d) {
             var date = new Date(d);
+            var hour = date.getHours();
+            var minute = date.getMinutes();
             var day = date.getDate();
             var monthIndex = date.getMonth() + 1;
             var year = date.getFullYear();
-            return day + '.' + monthIndex + '.' + year;
+            return day + '.' + monthIndex + '.' + year + ' - ' + hour + ':'+ minute;
         }
         $(document).ready(function () {
             $('.ui.search').search({
@@ -59,7 +61,7 @@
         $(document).ready(function () {
             loadData(function (jsonData) {
                 $.each(jsonData, function (index, item) {
-                    data.push([formatDate(item.time), item.upload, item.download]);
+                    data.push([formatDate(item.time), item.ping, item.upload, item.download]);
                 });
                 google.charts.load('current', {'packages': ['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
@@ -80,7 +82,7 @@
         function drawChart() {
             var d = new google.visualization.DataTable(data);
             d.addColumn('string', 'Time');
-            //d.addColumn('number', 'Ping');
+            d.addColumn('number', 'Ping');
             d.addColumn('number', 'Upload');
             d.addColumn('number', 'Download');
             d.addRows(data);
@@ -88,7 +90,7 @@
                 legend: 'right',
                 width: 1200,
                 height: 600,
-                colors: [ '#b3ff00', '#fc007b'] //'#6bd0ef',
+                colors: [ '#6bd0ef', '#b3ff00', '#fc007b']
             };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.LineChart(document.getElementById('chart_div'));

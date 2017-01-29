@@ -23,17 +23,18 @@ curl https://my.secret.url.to.my.site/setup.sh | bash
 ```
 $ cd /usr/local/
 $ mkdir venvs
-$ git clone git@gitlab.com:krstnschwpwr/speedcontrol.git
+$ git clone git@github.com:krstnschwpwr/speedcontrol.git
 $ cd speedcontrol
 ```
 
-2. Install requirements
+2. Install requirements & Caddy
 
 ```
 $ apt install python3 python-pip python-dev sqlite3 ufw
 $ virtualenv /usr/local/venvs/speedcontrol -p "$(which python3)"
 $ source /usr/local/venvs/speedcontrol/bin/activate
 $ pip install -r /usr/local/speedcontrol/requirements.txt
+$ curl https://getcaddy.com | bash
 ``` 
 
 3. Setup system service & configure system

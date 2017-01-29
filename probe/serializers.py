@@ -3,6 +3,7 @@ from rest_framework import serializers
 from .models import Speed, AverageQuality
 from .lib.pyspeedtest import pretty_speed
 from .models import Settings
+from .lib.helpers import is_not_first_run
 
 
 class DictSerializer(serializers.BaseSerializer):
@@ -41,6 +42,23 @@ class SpeedSerializer(serializers.ModelSerializer):
         model = Speed
         fields = ('id', 'server', 'time', 'ping', 'upload', 'download')
 
+
+class SettingsSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Settings
+            fields = ('id', 'expected_upload', 'expected_download', 'prtg_url', 'prtg_token')
+
+
+class ErrorMsg(serializers.BaseSerializer):
+    def to_representation(self, instance):
+        msg = {'message': 'No data available!', 'status': 500}
+        return msg
+
+
+class PrtgErrorMsg(serializers.BaseSerializer):
+    def to_representation(self, instance):
+        msg = {'prtg': {'error': 1, 'text': 'No data available!'}}
+        return msg
 
 class SearchSerializer(serializers.ModelSerializer):
     title = serializers.SerializerMethodField()

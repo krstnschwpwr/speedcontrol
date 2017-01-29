@@ -1,6 +1,7 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-    <div class="ui container input-k">
+    <div class="row start set">
+    <div class=" input-k">
         <div class="box borderless center ui form">
             <div class="title-wrapper">
                 <h3>SPEED TO CONTROL</h3>
@@ -45,13 +46,19 @@
                     </div>
                 </div>
                 <div class="one center field">
-                   <a class="hvr-underline-from-center"> <input class="ui submit box" type="submit" id="sub" value="START TRACKING"></a>
+                    <a class=" box"> <p><input class="ui submit box" type="submit" id="sub"
+                                                                 value="START TRACKING"></p></a>
+
                 </div>
             </form>
         </div>
 
+
+    </div>
     </div>
 {% endblock %}
 {% block additional_scripts %}
     <script type="text/javascript" src="/static/javascript/settings.js"></script>
+    <script type="text/javascript" src="/static/vendor-js/mo.min.js"></script>
+
 {% endblock %}

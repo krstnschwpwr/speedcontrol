@@ -15,7 +15,7 @@
             </div>
             {% load speed_format from app_filters %}
             <div class="box center menu">
-                <a href="/api/v1/qualityofservice/"><p id="q">QoS<span> </span></p></a>
+                <p id="q">QoS<span> </span></p>
             </div>
         </div>
     </div>
@@ -38,7 +38,6 @@
         <div class="box">
             <p id="server">NaN</p>
         </div>
-
     </div>
 {% endblock %}
 {% block additional_scripts %}
@@ -53,6 +52,5 @@
     </script>
     <script type="text/javascript" src="/static/javascript/status.js"></script>
     <script type="text/javascript" src="/static/vendor-js/mo.js"></script>
-
 {% endblock %}
 
