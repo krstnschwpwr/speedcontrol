@@ -28689,7 +28689,7 @@ a.ui.card:hover,
 
 .ui.toggle.checkbox input:checked ~ .box:before,
 .ui.toggle.checkbox input:checked ~ label:before {
-  background-color: #2185D0 !important;
+  background-color:  #00fffe !important;
 }
 
 .ui.toggle.checkbox input:checked ~ .box:after,
