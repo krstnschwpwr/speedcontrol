@@ -1,64 +1,60 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
     <div class="row start set">
-    <div class=" input-k">
-        <div class="box borderless center ui form">
-            <div class="title-wrapper">
-                <h3>SPEED TO CONTROL</h3>
-                <h5>Please enter the following information in valid format</h5>
+        <div class=" input-k">
+            <div class="box borderless center ui form">
+                <div class="title-wrapper">
+                    <h3>SPEED TO CONTROL</h3>
+                    <h5>Please enter the following information in valid format</h5>
+                </div>
+                <form action="/settings" method="post">
+                    {% csrf_token %}
+                    <div class="field wide">
+                        <div class="two fields">
+                            <div class="field up">
+                                <label> UPLOAD</label>
+
+                                <input placeholder="3024000 bit/s" id="message" type="text" name="expected_upload">
+                            </div>
+
+                            <div class="field down">
+                                <label>DOWNLOAD</label>
+                                <input placeholder="16000000 bit/s" type="text" name="expected_download">
+                            </div>
+                        </div>
+                        <div class="field prtg clearing">
+                            <div class="ui centered toggle floated checkbox prtg-set">
+                                <input type="checkbox" name="prtg" id="prtg" data-onstyle="default">
+                                <label></label><h5>Send Data To PRTG</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field wide" id="prtg_fields">
+                        <div class="two fields">
+                            <div class="field url">
+                                <label>
+                                    PRTG URL
+                                </label>
+                                <input placeholder="http://10.49.12.65:5050/" type="text" id="url" name="prtg_url">
+                            </div>
+                            <div class="field token">
+                                <label>
+                                    PRTG TOKEN
+                                </label>
+                                <input placeholder="AD56FC84-D761-4C82-9881" type="text" name="prtg_token">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one center field">
+                        <a class=" box"><p><input class="ui submit box sendbutton" type="submit" id="sub"
+                                                  value="START TRACKING" disabled/></p></a>
+                    </div>
+                </form>
             </div>
-            <form action="/settings" method="post">
-                {% csrf_token %}
-                <div class="field wide">
-                    <div class="two fields">
-                        <div class="field up">
-                            <label> UPLOAD</label>
-                            <input placeholder="3024000 bit/s" type="text" name="upload">
-                        </div>
-
-                        <div class="field down">
-                            <label>DOWNLOAD</label>
-                            <input placeholder="16000000 bit/s" type="text" name="download">
-                        </div>
-                    </div>
-                    <div class="field prtg clearing">
-                        <div class="ui centered toggle floated checkbox prtg-set">
-                            <input type="checkbox" name="prtg" id="prtg" data-onstyle="default">
-                            <label></label><h5>Send Data To PRTG</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="field wide" id="prtg_fields">
-                    <div class="two fields">
-                        <div class="field url">
-                            <label>
-                                PRTG URL
-                            </label>
-                            <input placeholder="http://10.49.12.65:5050/" type="text" id="url" name="prtg_url">
-                        </div>
-
-                        <div class="field token">
-                            <label>
-                                PRTG TOKEN
-                            </label>
-                            <input placeholder="AD56FC84-D761-4C82-9881" type="text" name="prtg_token">
-                        </div>
-                    </div>
-                </div>
-                <div class="one center field">
-                    <a class=" box"> <p><input class="ui submit box" type="submit" id="sub"
-                                                                 value="START TRACKING"></p></a>
-
-                </div>
-            </form>
         </div>
-
-
-    </div>
     </div>
 {% endblock %}
 {% block additional_scripts %}
     <script type="text/javascript" src="/static/javascript/settings.js"></script>
     <script type="text/javascript" src="/static/vendor-js/mo.min.js"></script>
-
 {% endblock %}

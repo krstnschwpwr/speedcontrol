@@ -39,11 +39,11 @@
     <table id="data" style="display: none" class="ui sortable very basic inverted striped pblue center aligned table">
         <thead class="header" style="z-index: auto; position: static; top: auto;">
         <tr class="bordered">
-            <th class="sorted ascending"><img src="/static/images/time.png"><br><span>Time</span></th>
-            <th class="sorted ascending"><img src="/static/images/server.png"><br><span>Server</span></th>
-            <th class="sorted ascending"><img src="/static/images/ping.png"><br><span>Ping</span></th>
-            <th class="sorted ascending"><img src="/static/images/download.png"><br><span>Download</span></th>
-            <th class="sorted ascending"><img src="/static/images/upload.png"><br><span>Upload</span></th>
+            <th class="sorted descending"><img src="/static/images/time.png"><br><span>Time</span></th>
+            <th class="sorted"><img src="/static/images/server.png"><br><span>Server</span></th>
+            <th class="sorted"><img src="/static/images/ping.png"><br><span>Ping</span></th>
+            <th class="sorted"><img src="/static/images/download.png"><br><span>Download</span></th>
+            <th class="sorted"><img src="/static/images/upload.png"><br><span>Upload</span></th>
         </tr>
         </thead>
         <tbody>
@@ -52,7 +52,7 @@
 {% endblock %}
 {% block additional_scripts %}
     <script type="text/javascript" src="/static/vendor-js/jquery-scrolltofixed.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="http://semantic-ui.com/javascript/library/tablesort.js"></script>
-   <script type="text/javascript" src="/static/javascript/overview.js"></script>
+    <script type="text/javascript" src="/static/vendor-js/chart.js"></script>
+    <script type="text/javascript" src="/static/vendor-js/tablesort.js"></script>
+    <script type="text/javascript" src="/static/javascript/overview.js"></script>
 {% endblock %}

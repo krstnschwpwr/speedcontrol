@@ -1,10 +1,26 @@
 $(document).ready(function () {
-    $(function() {
-    var xpathname = window.location.pathname;
-    if (xpathname == '/settings') {
-        $('body').addClass('unscroll settings');
-    }
-});
+
+    $('.sendButton').attr('disabled', true);
+    $('#message').keyup(function () {
+        if ($(this).val().length != 0) {
+            $('.sendButton').attr('disabled', false);
+        }
+        else {
+            $('.sendButton').attr('disabled', true);
+        }
+    })
+    loadUserRecord(function (d) {
+        $('li#up span').text(d.expected_upload)
+        $('li#down span').text(d.expected_download)
+        $('li#prtg_url span').text(d.prtg_url)
+        $('li#prtg_token span').text(d.prtg_token)
+    });
+    $(function () {
+        var xpathname = window.location.pathname;
+        if (xpathname == '/settings') {
+            $('body').addClass('unscroll settings');
+        }
+    });
 
     $('.set').append('<div class="list">' + '<ul>' +
         '<li id="tit"><h4> LAST RECORD </h4></li>' +
@@ -13,7 +29,7 @@ $(document).ready(function () {
         '<li id="prtg_url"> PRTG URL:  <span></span> </li>' +
         '<li id="prtg_token"> PRTG TOKEN:<br><span></span> </li>'
         + '<li class="box"><a href="javascript:history.back()"><p> Take Me Back </p></a></li>' +
-        '</ul>'+ '</div>');
+        '</ul>' + '</div>');
 
 
     const x = new mojs.Shape({
@@ -61,15 +77,6 @@ $(document).ready(function () {
     $('.prev a').delay(1300).fadeIn(200);
 
 
-    loadUserRecord(function (d) {
-        $('li#up span').text(d[0].expected_upload)
-        $('li#down span').text(d[0].expected_download)
-        console.log(d)
-        $('li#prtg_url span').text(d[0].prtg_url)
-        $('li#prtg_token span').text(d[0].prtg_token)
-
-    });
-
     function loadUserRecord(cb) {
         if (cb) {
             $.ajax({
@@ -81,8 +88,6 @@ $(document).ready(function () {
 
         }
     }
-
-
 
 
 });

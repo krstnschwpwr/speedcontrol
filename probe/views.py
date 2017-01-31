@@ -6,7 +6,8 @@ from rest_framework.response import Response
 
 from .forms import SettingsForm
 from .models import Speed, AverageQuality, Settings
-from .serializers import SpeedSerializer, PrtgSpeedSerializer, SearchSerializer, DictSerializer, QualitySerializer, SettingsSerializer, ErrorMsg, PrtgErrorMsg
+from .serializers import SpeedSerializer, PrtgSpeedSerializer, SearchSerializer, DictSerializer, QualitySerializer, \
+    SettingsSerializer, ErrorMsg, PrtgErrorMsg
 from .renderers import PrtgRenderer
 
 from django.http import HttpResponseRedirect
@@ -22,20 +23,19 @@ class QualityList(generics.ListAPIView):
 
 
 class QualityDetail(generics.RetrieveAPIView):
-        renderer_classes = [JSONRenderer]
+    renderer_classes = [JSONRenderer]
 
-        def retrieve(self, request, *args, **kwargs):
-            if is_not_first_run():
-                id = kwargs.get('id', None)
-                if id:
-                    queryset = AverageQuality.objects.get(id=id)
-                    serializer = QualitySerializer(queryset, many=False)
-                else:
-                    queryset = AverageQuality.objects.latest()
-                    serializer = QualitySerializer(queryset, many=False)
-                return Response(serializer.data)
+    def retrieve(self, request, *args, **kwargs):
+        if is_not_first_run():
+            queryset = AverageQuality.objects.latest()
+            if queryset is None:
+                print('q: {0}'.format(queryset))
+                serializer = ErrorMsg('', many=False)
+            else:
+                serializer = QualitySerializer(queryset, many=False)
+        else:
             serializer = ErrorMsg('', many=False)
-            return Response(serializer.data)
+        return Response(serializer.data)
 
 
 class SearchView(generics.ListAPIView):
@@ -47,7 +47,7 @@ class SearchView(generics.ListAPIView):
             queryset = Speed.objects.all().filter(id__contains=q) | Speed.objects.all().filter(server__contains=q)
         else:
             queryset = Speed.objects.all()
-        serializer = SearchSerializer(queryset , many=True)
+        serializer = SearchSerializer(queryset, many=True)
         return Response({'results': serializer.data})
 
 
@@ -59,25 +59,26 @@ class SpeedList(generics.ListAPIView):
 
 class SpeedDetail(generics.RetrieveAPIView):
     renderer_classes = [JSONRenderer, PrtgRenderer]
+
     def retrieve(self, request, *args, **kwargs):
-            id = kwargs.get('id', None)
-            format = request.GET.get('format', None)
-            if id:
-                queryset = Speed.objects.get(id=id)
-                serializer = SpeedSerializer(queryset, many=False)
-            else:
-                try:
-                    queryset = Speed.objects.latest()
-                    if format == 'prtg':
-                        serializer = PrtgSpeedSerializer(queryset, many=False)
-                    else:
-                        serializer = SpeedSerializer(queryset, many=False)
-                except:
-                    if format == 'prtg':
-                        serializer = PrtgErrorMsg('', many=False)
-                    else:
-                        serializer = ErrorMsg('', many=False)
-            return Response(serializer.data)
+        id = kwargs.get('id', None)
+        format = request.GET.get('format', None)
+        if id:
+            queryset = Speed.objects.get(id=id)
+            serializer = SpeedSerializer(queryset, many=False)
+        else:
+            try:
+                queryset = Speed.objects.latest()
+                if format == 'prtg':
+                    serializer = PrtgSpeedSerializer(queryset, many=False)
+                else:
+                    serializer = SpeedSerializer(queryset, many=False)
+            except:
+                if format == 'prtg':
+                    serializer = PrtgErrorMsg('', many=False)
+                else:
+                    serializer = ErrorMsg('', many=False)
+        return Response(serializer.data)
 
 
 class OverviewView(TemplateView):
@@ -88,15 +89,16 @@ class OverviewView(TemplateView):
         return TemplateResponse(request, 'overview.html')
 
 
-class RecordView(generics.ListAPIView):
+class RecordView(generics.RetrieveAPIView):
     renderer_classes = [JSONRenderer]
-    queryset = [Settings.objects.last()]
 
-
-    if queryset is None:
-        serializer_class = ErrorMsg
-    serializer_class = SettingsSerializer
-
+    def retrieve(self, request, *args, **kwargs):
+        self.queryset = Settings.objects.last()
+        if self.queryset is None:
+            serializer = ErrorMsg(self.queryset, many=False)
+        else:
+            serializer = SettingsSerializer(self.queryset, many=False)
+        return Response(serializer.data)
 
 
 class StartView(TemplateView):
@@ -122,24 +124,19 @@ def settings(request):
     if request.method == 'POST':
         form = SettingsForm(request.POST)
         if form.is_valid():
-            upload = request.POST.get('upload', '')
-            download = request.POST.get('download', '')
+            expected_upload = request.POST.get('expected_upload', '')
+            expected_download = request.POST.get('expected_download', '')
             prtg_url = request.POST.get('prtg_url', '')
             prtg_token = request.POST.get('prtg_token', '')
-            if Settings.objects.first():
-                ps = Settings.objects.first()
-                ps.upload = upload
-                ps.download = download
-                ps.prtg_url = prtg_url
-                ps.prtg_token = prtg_token
-                ps.save()
-            else:
-                prov_object = Settings(expected_upload=upload, expected_download=download, prtg_url=prtg_url, prtg_token=prtg_token)
-                prov_object.save()
+            ps = Settings.objects.latest()
+            ps.expected_upload = expected_upload
+            ps.expected_download = expected_download
+            ps.prtg_url = prtg_url
+            ps.prtg_token = prtg_token
+            ps.save()
         return HttpResponseRedirect('/')
     else:
         form = SettingsForm()
     return render(request, 'settings.html', {
         'form': form,
     })
-

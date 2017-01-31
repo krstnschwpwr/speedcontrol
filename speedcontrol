@@ -168,7 +168,7 @@ stop() {
 	if [[ -e "${CADDY_PID_FILE}" ]]; then
 	    caddy_pid=$(<${CADDY_PID_FILE})
 	    printf "Trying to stop caddy..."
-	    stop_process "$caddy_pid" 1
+	    stop_process "$caddy_pid"
 	    if [[ $? -ne 0 ]]; then
 	    	printf "\nCleaning up..."
 	    fi

@@ -3,33 +3,41 @@ body {
     background-color: #12002c !important;
     font-family: "BRANDON LIGHT";
 }
+
 @font-face {
-font-family: "BRANDON LIGHT";
-src: url("/static/stylesheets/themes/default/assets/fonts/BRANDON_LIGHT.OTF");
+    font-family: "BRANDON LIGHT";
+    src: url("/static/stylesheets/themes/default/assets/fonts/BRANDON_LIGHT.OTF");
 }
+
 @font-face {
-font-family: "BRANDON MEDIUM";
-src: url("/static/stylesheets/themes/default/assets/fonts/BRANDON_MED.OTF");
+    font-family: "BRANDON MEDIUM";
+    src: url("/static/stylesheets/themes/default/assets/fonts/BRANDON_MED.OTF");
 }
+
 @font-face {
-font-family: "BRANDON BOLD";
-src: url("/static/stylesheets/themes/default/assets/fonts/BRANDON_BLD.OTF");
+    font-family: "BRANDON BOLD";
+    src: url("/static/stylesheets/themes/default/assets/fonts/BRANDON_BLD.OTF");
 }
-h1, h2,h3, h4, h5{
+
+h1, h2, h3, h4, h5 {
     font-family: "BRANDON MEDIUM";
 }
-ul li{
+
+ul li {
     font-family: "BRANDON LIGHT";
 }
+
 body.unscroll {
     margin: 0;
     height: 100%;
     overflow: hidden;
 
 }
-ul p{
+
+ul p {
     font-family: "Brandon Text";
 }
+
 svg:not(:root) {
     display: block;
     margin: 0 auto;
@@ -40,9 +48,11 @@ p, a, p a {
     font-size: 13px;
     letter-spacing: 1px;
 }
-table{
+
+table {
     font-family: "BRANDON LIGHT";
 }
+
 .ui .menu {
     background: none !important;
     top: 5% !important;
@@ -198,6 +208,10 @@ body.data {
 
 #chart_div div table {
     display: none !important;
+}
+
+#chart_div {
+    letter-spacing: 0 !important;
 }
 
 text[text-anchor^="end"] {
@@ -717,7 +731,7 @@ and (min-width: 1300px) {
 
     letter-spacing: 2px;
     color: #00fffe;
-      border-bottom: 7px solid #ffffff !important;
+    border-bottom: 7px solid #ffffff !important;
     font-size: 1.8rem !important;
     text-decoration: none;
     display: inline-block;
@@ -743,11 +757,12 @@ and (min-width: 1300px) {
 .set ul li#down span,
 .set ul li#prtg_url span {
     float: right !important;
-        font-family: "BRANDON LIGHT" !important;
+    font-family: "BRANDON LIGHT" !important;
 
 }
-.set ul li{
-        font-family: "BRANDON MEDIUM";
+
+.set ul li {
+    font-family: "BRANDON MEDIUM";
 }
 
 .prev a.settings {
@@ -765,12 +780,27 @@ and (min-width: 1300px) {
 #prtg_token {
     margin-bottom: 10%;
 }
-#prtg_token span{
-     font-family: "BRANDON LIGHT" !important;
+
+#prtg_token span {
+    font-family: "BRANDON LIGHT" !important;
 }
 
 .field.url #url,
 .field.prtg_token #prtg_token {
     width: 93%;
     float: left;
+}
+
+div.google-visualization-tooltip {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    border-color: #ffffff !important;
+    width: 13% !important;
+
+}
+
+div.google-visualization-tooltip > ul > li > span {
+    font-family: 'BRANDON MEDIUM' !important;
+    color: #12002c !important;
+    text-transform: uppercase !important;
 }

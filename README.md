@@ -23,7 +23,7 @@ curl https://my.secret.url.to.my.site/setup.sh | bash
 ```
 $ cd /usr/local/
 $ mkdir venvs
-$ git clone git@github.com:krstnschwpwr/speedcontrol.git
+$ git clone https://github.com/krstnschwpwr/speedcontrol.git
 $ cd speedcontrol
 ```
 

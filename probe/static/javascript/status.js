@@ -72,7 +72,7 @@ function loadQoS(cb) {
             method: 'get',
             dataType: 'json'
         }).done(function (d) {
-            if (d.length == 0) {
+            if (d.length == 0 ) {
                 d = {percentage: 0}
             }
             cb(d)
@@ -88,5 +88,5 @@ function poll() {
         $('#q span').text(" " + d.percentage.toFixed(2) + "%");
     });
 
-    window.setTimeout(poll, 5000);
+    window.setTimeout(poll, 10000);
 }
