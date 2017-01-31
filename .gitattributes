@@ -3,3 +3,4 @@
 *.css    text
 *.js     text
 *.rb linguist-language=Python
+/probe/static linguist-vendored
