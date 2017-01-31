@@ -1,0 +1,4 @@
+*.py     text diff=python
+*.html   text diff=html
+*.css    text
+*.js     text
