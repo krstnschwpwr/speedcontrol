@@ -1,11 +1,13 @@
-# Speed Ctrl
 
-*short description*
+<img src="https://cloud.githubusercontent.com/assets/21247641/22448822/40f9013e-e75c-11e6-9261-71418fa98c19.png" align="center" height="133" width="448" >
 
-![element 1](https://cloud.githubusercontent.com/assets/21247641/22448822/40f9013e-e75c-11e6-9261-71418fa98c19.png)
+## Speed CTRL - Description
+
+This application is designed to inform people about the load of their internet connection at home in form of various data visualizations in a local network. This allows the user to monitor his DSL bandwidth and offers an interface for using the PRTG software. 
 
 
 ## ToDo
+
 
 * [ ] Add development documentation
 * [ ] Improve performance
@@ -18,7 +20,7 @@
 > Currently it is not possible run the app as a different user but it is the next step on my roadmap.
 
 ```
-curl https://my.secret.url.to.my.site/setup.sh | bash
+curl https://gist.githubusercontent.com/krstnschwpwr/0c46c9cd4264d9b06a19552bfe257bd9/raw/1cb2bca27d218900f0ec83e87859d3b2b37babe8/setup.sh | bash
 ```
 
 1. Clone the git repository && setup required directories
