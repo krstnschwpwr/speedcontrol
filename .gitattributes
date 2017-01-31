@@ -1,4 +1,2 @@
-*.py     text diff=python
-*.html   text diff=html
-*.css    text
-*.js     text
+*.py linguist-language=Python
+/probe/static/* linguist-vendored
