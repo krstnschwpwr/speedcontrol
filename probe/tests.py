@@ -33,7 +33,7 @@ class WebViewTestCase(TestCase):
         k = is_first_run()
         response = self.client.get("/")
         self.assertEqual(k, True)
-        self.assertRedirects(response, "/settings", status_code=302, target_status_code=200)
+        self.assertRedirects(response, "/start", status_code=302, target_status_code=200)
 
     def test_status_view_when_not_first_run(self):
         Settings.objects.create(expected_download="34234", expected_upload="34234")
@@ -47,7 +47,7 @@ class WebViewTestCase(TestCase):
         k = is_first_run()
         response = self.client.get("/overview")
         self.assertEqual(k, True)
-        self.assertRedirects(response, "/settings", status_code=302, target_status_code=200)
+        self.assertRedirects(response, "/start", status_code=302, target_status_code=200)
 
     def test_overview_view_when_not_first_run(self):
         Settings.objects.create(expected_download="34234", expected_upload="34234")
@@ -58,7 +58,7 @@ class WebViewTestCase(TestCase):
         self.assertTemplateUsed(response, 'overview.html')
 
     def test_settings_view_general(self):
-        response = self.client.get("/settings")
+        response = self.client.get("/start")
         self.assertEqual(response.status_code, 200)
 
 
@@ -99,7 +99,6 @@ class ApiTestCase(APITestCase):
                              upload="2893574")
         response = requests.get('http://127.0.0.1:8000/api/v1/measurements/latest?format=prtg')
         prtg_json_re = response.json()
-        print(prtg_json_re)
         self.assertTrue(prtg_json_re, k)
         self.assertEqual(response.status_code, 200)
 

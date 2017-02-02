@@ -29,7 +29,7 @@ class QualityDetail(generics.RetrieveAPIView):
         if is_not_first_run():
             queryset = AverageQuality.objects.latest()
             if queryset is None:
-                print('q: {0}'.format(queryset))
+               # print('q: {0}'.format(queryset))
                 serializer = ErrorMsg('', many=False)
             else:
                 serializer = QualitySerializer(queryset, many=False)
@@ -128,12 +128,17 @@ def settings(request):
             expected_download = request.POST.get('expected_download', '')
             prtg_url = request.POST.get('prtg_url', '')
             prtg_token = request.POST.get('prtg_token', '')
-            ps = Settings.objects.latest()
-            ps.expected_upload = expected_upload
-            ps.expected_download = expected_download
-            ps.prtg_url = prtg_url
-            ps.prtg_token = prtg_token
-            ps.save()
+            if Settings.objects.first():
+                ps = Settings.objects.first()
+                ps.expected_upload = expected_upload
+                ps.expected_download = expected_download
+                ps.prtg_url = prtg_url
+                ps.prtg_token = prtg_token
+                ps.save()
+            else:
+                prov_object = Settings(expected_upload=expected_download, expected_download=expected_download, prtg_url=prtg_url,
+                                       prtg_token=prtg_token)
+                prov_object.save()
         return HttpResponseRedirect('/')
     else:
         form = SettingsForm()
