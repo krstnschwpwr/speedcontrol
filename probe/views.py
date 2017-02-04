@@ -136,7 +136,7 @@ def settings(request):
                 ps.prtg_token = prtg_token
                 ps.save()
             else:
-                prov_object = Settings(expected_upload=expected_download, expected_download=expected_download, prtg_url=prtg_url,
+                prov_object = Settings(expected_upload=expected_upload, expected_download=expected_download, prtg_url=prtg_url,
                                        prtg_token=prtg_token)
                 prov_object.save()
         return HttpResponseRedirect('/')
