@@ -38,6 +38,7 @@ class QualityDetail(generics.RetrieveAPIView):
         return Response(serializer.data)
 
 
+
 class SearchView(generics.ListAPIView):
     renderer_classes = [JSONRenderer]
 
