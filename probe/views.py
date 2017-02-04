@@ -26,7 +26,7 @@ class QualityDetail(generics.RetrieveAPIView):
     renderer_classes = [JSONRenderer]
 
     def retrieve(self, request, *args, **kwargs):
-        if is_not_first_run():
+        if not is_first_run():
             queryset = AverageQuality.objects.latest()
             if queryset is None:
                # print('q: {0}'.format(queryset))
