@@ -35,7 +35,8 @@ $ cd speedcontrol
 2. Install requirements & Caddy
 
 ```
-$ apt install python3 python-pip virtualenv python-dev sqlite3 ufw
+$ apt install python3 python-pip python-dev sqlite3 ufw
+$ pip install virtualenv
 $ virtualenv /usr/local/venvs/speedcontrol -p "$(which python3)"
 $ source /usr/local/venvs/speedcontrol/bin/activate
 $ pip install -r /usr/local/speedcontrol/requirements.txt
