@@ -29,7 +29,7 @@ class PrtgSpeedSerializer(serializers.ModelSerializer):
                                  "value": pretty_speed(getattr(obj, str(field)) * 0.000001),
                                  "float": 1,
                                  "customUnit": "Mbit/s" if field != 'ping' else "ms"})
-        prtg = {"result": channels}
+        prtg = {"results": channels}
         return prtg
 
     class Meta:
