@@ -22,13 +22,11 @@ class PrtgSpeedSerializer(serializers.ModelSerializer):
             if field == 'ping':
                 channels.append({"channel": str(field),
                                  "value": getattr(obj, str(field)),
-                                 "float": 1,
-                                 "customUnit": "Mbit/s" if field != 'ping' else "ms"})
+                                 "unit": "TimeResponse"}),
             else:
                 channels.append({"channel": str(field),
-                                 "value": pretty_speed(getattr(obj, str(field)) * 0.000001),
-                                 "float": 1,
-                                 "customUnit": "Mbit/s" if field != 'ping' else "ms"})
+                                 "value": getattr(obj, str(field)),
+                                 "unit": "BytesBandwidth"})
         prtg = {"result": channels}
         return prtg
 
