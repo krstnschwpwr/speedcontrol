@@ -20,7 +20,7 @@ class Scheduler(object):
         self.scheduler.enter(self.measure_time(fill), 1, fill)
         self.scheduler.enter(self.measure_time(calc_qos), 1, calc_qos)
         self.scheduler.enter(self.measure_time(push), 1, push)
-        self.scheduler.enter(60, 1, self.__init_workers())
+        self.scheduler.enter(60, 1, self.__init_workers)
 
     def start(self):
         self.__init_workers()
