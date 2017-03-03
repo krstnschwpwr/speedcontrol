@@ -801,6 +801,7 @@ div.google-visualization-tooltip > ul > li > span {
     text-transform: uppercase !important;
 }
 
-.start .ui.grid.container{
+.start .ui.grid.container,
+.settings .ui.grid.container{
     width: 90% !important;
 }
