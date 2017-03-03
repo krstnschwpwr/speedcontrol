@@ -1,4 +1,11 @@
 $(document).ready(function () {
+         $(function () {
+        var kk = window.location.pathname;
+         console.log(kk);
+        if (kk == '/overview') {
+            $('body').addClass('overview');
+        }
+    });
 
     $('#data .header').scrollToFixed();
     var back_to_top_button = ['<a href="#top" class="back-to-top">Top &#8657</a>'].join("");

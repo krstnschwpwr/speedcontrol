@@ -4724,7 +4724,7 @@ input::selection {
   }
 
   .ui.grid.container {
-    width: 90% !important;
+    width: calc( 1127px  +  2rem ) !important;
   }
 
   .ui.relaxed.grid.container {

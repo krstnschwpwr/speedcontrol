@@ -800,3 +800,7 @@ div.google-visualization-tooltip > ul > li > span {
     color: #12002c !important;
     text-transform: uppercase !important;
 }
+
+.start .ui.grid.container{
+    width: 90%;
+}

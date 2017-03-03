@@ -1,4 +1,13 @@
+
 $(document).ready(function () {
+     $(function () {
+        var kk = window.location.pathname;
+         console.log(kk);
+        if (kk == '/start') {
+            $('body').addClass('start');
+        }
+    });
+
 
     const cross = new mojs.Shape({
         className: 'circ',
