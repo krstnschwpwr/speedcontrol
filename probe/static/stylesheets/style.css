@@ -802,5 +802,5 @@ div.google-visualization-tooltip > ul > li > span {
 }
 
 .start .ui.grid.container{
-    width: 90%;
+    width: 90% !important;
 }
